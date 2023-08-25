@@ -18,7 +18,8 @@ public class VaultKeepsService
 
     internal VaultKeep CreateVaultKeep(VaultKeep vkData)
     {
-      VaultKeep vaultKeep = _vaultKeepsRepository.CreateVaultKeep(vkData);
+      int vaultKeepId = _vaultKeepsRepository.CreateVaultKeep(vkData);
+      VaultKeep vaultKeep = GetVaultKeepById(vaultKeepId, vkData.CreatorId);
       return vaultKeep;
     }
 
@@ -27,5 +28,26 @@ public class VaultKeepsService
       _vaultsService.GetVaultById(vaultId, userId);
       List<VaultKeep> vaultKeeps = _vaultKeepsRepository.GetVaultKeepsByVaultId(vaultId);
       return vaultKeeps;
+    }
+
+    internal VaultKeep GetVaultKeepById(int vaultKeepId, string userId)
+    {
+      VaultKeep vaultKeep = _vaultKeepsRepository.GetVaultKeepById(vaultKeepId);
+      if (vaultKeep == null)
+      {
+        throw new Exception("Bad vaultKeep Id");
+      }
+      return vaultKeep;
+    }
+
+    internal string RemoveVaultKeep(int vaultKeepId, string userId)
+    {
+      VaultKeep vaultKeep = GetVaultKeepById(vaultKeepId, userId);
+      if (vaultKeep.CreatorId != userId)
+      {
+        throw new Exception("Not your VAULTKEEP");
+      }
+      _vaultKeepsRepository.RemoveVaultKeep(vaultKeepId);
+      return "VaultKeep Removed!";
     }
 }

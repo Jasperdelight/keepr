@@ -14,7 +14,7 @@ public class VaultKeepsRepository
         _db = db;
     }
 
-    internal VaultKeep CreateVaultKeep(VaultKeep vkData)
+    internal int CreateVaultKeep(VaultKeep vkData)
     {
       string sql = @"
       INSERT INTO vaultKeeps(creatorId, vaultId, keepId)
@@ -22,8 +22,33 @@ public class VaultKeepsRepository
       SELECT LAST_INSERT_ID()
       ;";
       int vaultKeepId = _db.ExecuteScalar<int>(sql, vkData);
-      vkData.Id = vaultKeepId;
-      return vkData;
+      // vkData.Id = vaultKeepId;
+      return vaultKeepId;
+    }
+
+    internal VaultKeep GetVaultKeepById(int vaultKeepId)
+    {
+      string sql = @"
+      SELECT
+      vk.*,
+      acc.*,
+      k.*
+      FROM vaultKeeps vk
+      JOIN accounts acc ON acc.id = vk.creatorId
+      JOIN keeps k ON k.id = vk.keepId
+      WHERE vk.id = @vaultKeepId
+      ;";
+      VaultKeep vaultKeep = _db.Query<VaultKeep, Profile, Keep, VaultKeep>(
+        sql,
+        (vaultKeep, profile, keep) =>
+        {
+          vaultKeep.Creator = profile;
+          vaultKeep.Keeps = keep;
+          return vaultKeep;
+        },
+        new {vaultKeepId}
+      ).FirstOrDefault();
+      return vaultKeep;
     }
 
     internal List<VaultKeep> GetVaultKeepsByVaultId(int vaultId)
@@ -38,7 +63,7 @@ public class VaultKeepsRepository
       JOIN keeps k ON k.id = vk.keepId
       WHERE vk.vaultId = @vaultId
       ;";
-      List <VaultKeepViewModel> vaultKeeps = _db.Query<VaultKeep, Profile, Keep, VaultKeep>(
+      List <VaultKeep> vaultKeeps = _db.Query<VaultKeep, Profile, Keep, VaultKeep>(
         sql,
         (vaultKeep, profile, keep) =>
         {
@@ -49,5 +74,11 @@ public class VaultKeepsRepository
         new {vaultId}
       ).ToList();
       return vaultKeeps;
+    }
+
+    internal void RemoveVaultKeep(int vaultKeepId)
+    {
+      string sql = "DELETE FROM vaultKeeps WHERE id = @vaultKeepId LIMIT 1 ;";
+      _db.Execute(sql, new{vaultKeepId});
     }
 }
