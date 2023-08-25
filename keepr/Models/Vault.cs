@@ -13,4 +13,5 @@ public class Vault : RepoItem<int>
   public string Img { get; set; }
   public bool? IsPrivate { get; set; }
   public Profile Creator {get; set;}
+  public Keep Keeps { get; set; }
 }

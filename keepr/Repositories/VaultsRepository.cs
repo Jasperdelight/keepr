@@ -14,7 +14,7 @@ public class VaultsRepository
         _db = db;
     }
 
-    internal Vault CreateVault(Vault vaultData)
+    internal int CreateVault(Vault vaultData)
     {
       string sql = @"
       INSERT INTO vaults(name, description, img, creatorId)
@@ -22,8 +22,7 @@ public class VaultsRepository
       SELECT LAST_INSERT_ID()
       ;";
       int vaultId = _db.ExecuteScalar<int>(sql, vaultData);
-      vaultData.Id = vaultId;
-      return vaultData;
+      return vaultId;
     }
 
     internal void EditVault(Vault originalVault)

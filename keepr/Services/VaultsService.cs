@@ -16,7 +16,8 @@ public class VaultsService
 
     internal Vault CreateVault(Vault vaultData)
     {
-      Vault vault = _vaultsRepository.CreateVault(vaultData);
+      int vaultId = _vaultsRepository.CreateVault(vaultData);
+      Vault vault = GetVaultById(vaultId, vaultData.CreatorId);
       return vault;
     }
 
