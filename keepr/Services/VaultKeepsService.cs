@@ -17,13 +17,12 @@ public class VaultKeepsService
         _vaultsService = vaultsService;
         _keepsService = keepsService;
     }
-// TODO increase visit when vaultKeep made
     internal VaultKeep CreateVaultKeep(VaultKeep vkData)
     {
       int vaultKeepId = _vaultKeepsRepository.CreateVaultKeep(vkData);
       VaultKeep vaultKeep = GetVaultKeepById(vaultKeepId, vkData.CreatorId);
-    //  Keep keep = _keepsService.GetKeepByIdAndIncreaseVisits(vkData.KeepId, vkData.Creator.Id);
-    //  vaultKeep.Keeps =keep;
+     Keep keep = _keepsService.GetKeepByIdAndIncreaseVisits(vkData.KeepId, vaultKeep.Creator.Id);
+     vaultKeep.Keeps =keep;
 
       return vaultKeep;
     }
