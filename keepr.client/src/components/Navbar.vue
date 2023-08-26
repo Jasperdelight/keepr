@@ -10,11 +10,18 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
+      <div class="dropdown">
+  <button class="btn btn-outline dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Create
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#newKeepModal">New Keep </a>
+    <a class="dropdown-item" href="#"  data-bs-toggle="modal" data-bs-target="#newVaultModal">New Vault</a>
+  </div>
+</div>
       <ul class="navbar-nav me-auto">
         <li>
-          <router-link :to="{ name: 'About' }" class="btn text-success lighten-30 selectable text-uppercase">
-            About
-          </router-link>
+          
         </li>
       </ul>
       <!-- LOGIN COMPONENT HERE -->

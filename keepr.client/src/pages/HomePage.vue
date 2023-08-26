@@ -1,20 +1,57 @@
 <template>
-  <div class="home flex-grow-1 d-flex flex-column align-items-center justify-content-center">
-    <div class="home-card p-5 bg-white rounded elevation-3">
-      <img src="https://bcw.blob.core.windows.net/public/img/8600856373152463" alt="CodeWorks Logo"
-        class="rounded-circle">
-      <h1 class="my-5 bg-dark text-white p-3 rounded text-center">
-        Vue 3 Starter
-      </h1>
+<div class="container-fluid">
+  <section class="row">
+    <div v-for="keep in keeps" :key="keep.id" class="col-3 elevation-3 selectable" style="height: 250px; background-repeat: no-repeat; background-position: center; background-size: cover;" :style="`background-image: url(${keep.img})`">
+        <KeepCardComponent :keep = "keep"/>
     </div>
-  </div>
+  </section>
+</div>
+<ModalComponent id="keepModal">
+  <!-- <template #modalHeader>
+      header
+    </template> -->
+    <template #modalBody>
+      <KeepModalSlot/>
+    </template>
+</ModalComponent>
+<ModalComponent id="newKeepModal">
+    <template #modalBody>
+      <KeepForm/>
+    </template>
+</ModalComponent>
+<ModalComponent id="newVaultModal">
+    <template #modalBody>
+      Vault Form
+    </template>
+</ModalComponent>
 </template>
 
 <script>
+import { computed, onMounted } from "vue";
+import Pop from "../utils/Pop";
+import {keepsService} from "../services/KeepsService"
+import { AppState } from "../AppState";
+import ModalComponent from "../components/ModalComponent.vue";
+import KeepForm from "../components/KeepForm.vue";
+
 export default {
-  setup() {
-    return {}
-  }
+    setup() {
+        async function getKeeps() {
+            try {
+                await keepsService.getKeeps();
+            }
+            catch (error) {
+                Pop.error(error.message);
+            }
+        }
+        onMounted(() => {
+            getKeeps();
+        });
+        return {
+            keeps: computed(() => AppState.keeps)
+        };
+    },
+    components: { ModalComponent, KeepForm }
 }
 </script>
 
@@ -26,15 +63,14 @@ export default {
   text-align: center;
   user-select: none;
 
+
   .home-card {
     width: 50vw;
 
-    >img {
-      height: 200px;
-      max-width: 200px;
-      width: 100%;
-      object-fit: contain;
-      object-position: center;
+    .card-img {
+      min-height: 200px;
+      min-width: 200px;
+      background-repeat: no-repeat;
     }
   }
 }
