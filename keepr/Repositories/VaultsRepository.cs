@@ -17,8 +17,8 @@ public class VaultsRepository
     internal int CreateVault(Vault vaultData)
     {
       string sql = @"
-      INSERT INTO vaults(name, description, img, creatorId)
-      VALUES(@Name, @Description, @Img, @CreatorId);
+      INSERT INTO vaults(name, description, img, creatorId, isPrivate)
+      VALUES(@Name, @Description, @Img, @CreatorId, @isPrivate);
       SELECT LAST_INSERT_ID()
       ;";
       int vaultId = _db.ExecuteScalar<int>(sql, vaultData);
@@ -37,6 +37,27 @@ public class VaultsRepository
       WHERE id = @Id
       ;";
       _db.Execute(sql, originalVault);
+    }
+
+    internal List<Vault> GetAccountVaults(string userId)
+    {
+      string sql = @"
+      SELECT
+      v.*,
+      acc.*
+      FROM vaults v
+      JOIN accounts acc ON acc.id = v.creatorId
+      WHERE v.creatorId = @userId
+      ;";
+      List<Vault> vaults = _db.Query<Vault, Profile, Vault>(
+        sql,
+        (vault, profile)=>
+        {
+          vault.Creator = profile;
+          return vault;
+        }, new{userId}
+      ).ToList();
+      return vaults;
     }
 
     internal Vault GetVaultById(int vaultId)
@@ -58,6 +79,27 @@ public class VaultsRepository
         }, new {vaultId}
       ).FirstOrDefault();
       return vault;
+    }
+
+    internal List<Vault> GetVaultsByProfileId(string profileId)
+    {
+      string sql = @"
+      SELECT
+      v.*,
+      acc.*
+      FROM vaults v
+      JOIN accounts acc ON acc.id = v.creatorId
+      WHERE v.creatorId = @profileId
+      ;";
+      List<Vault> vaults = _db.Query<Vault, Profile, Vault>(
+        sql,
+        (vault, profile)=>
+        {
+          vault.Creator = profile;
+          return vault;
+        }, new {profileId}
+      ).ToList();
+      return vaults;
     }
 
     internal void RemoveVault(int vaultId)

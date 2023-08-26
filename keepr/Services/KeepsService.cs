@@ -70,4 +70,10 @@ public class KeepsService
       _keepsRepository.RemoveKeep(keepId);
       return "Keep Removed!";
     }
+
+    internal List<Keep> GetKeepsByProfileId(string profileId)
+    {
+      List<Keep> keeps = _keepsRepository.GetKeepsByProfileId(profileId);
+      return keeps;
+    }
 }

@@ -36,6 +36,12 @@ public class VaultsService
       return originalVault;
     }
 
+    internal List<Vault> GetAccountVaults(string userId)
+    {
+      List<Vault> vaults = _vaultsRepository.GetAccountVaults(userId);
+      return vaults;
+    }
+
     internal Vault GetVaultById(int vaultId, string userId)
     {
       Vault vault = _vaultsRepository.GetVaultById(vaultId);
@@ -48,6 +54,12 @@ public class VaultsService
       throw new Exception("Bad vault Id 😌");
     }
       return vault;
+    }
+
+    internal List<Vault> GetVaultsByProfileId(string profileId)
+    {
+      List<Vault> vaults = _vaultsRepository.GetVaultsByProfileId(profileId);
+      return vaults;
     }
 
     internal string RemoveVault(int vaultId, string userId)
