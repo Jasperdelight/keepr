@@ -107,8 +107,8 @@ public class KeepsRepository
       FROM keeps k
       LEFT JOIN vaultKeeps vk ON vk.keepId = k.id
       JOIN accounts acc ON acc.id = k.creatorId
-      WHERE k.id = @keepId
       WHERE k.creatorId = @profileId
+      GROUP BY k.id
       ;";
       List<Keep> keeps = _db.Query<Keep, Profile, Keep>(
         sql,
