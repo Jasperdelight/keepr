@@ -29,7 +29,7 @@ public class KeepsService
       return keep;
     }
 
-    private Keep GetKeepById(int keepId, string userId)
+    internal Keep GetKeepById(int keepId, string userId)
     {
       Keep keep = _keepsRepository.GetKeepById(keepId);
       if(keep == null)

@@ -25,7 +25,7 @@ public class VaultKeepsService
       //   throw new Exception("can not have more than one keep in your vault!");
       // }
       VaultKeep vaultKeep = GetVaultKeepById(vaultKeepId, vkData.CreatorId);
-     Keep keep = _keepsService.GetKeepByIdAndIncreaseVisits(vkData.KeepId, vaultKeep.Creator.Id);
+     Keep keep = _keepsService.GetKeepById(vkData.KeepId, vaultKeep.Creator.Id);
      vaultKeep.Keeps =keep;
 
       return vaultKeep;
