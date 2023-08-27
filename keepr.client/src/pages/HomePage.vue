@@ -6,24 +6,7 @@
     </div>
   </section>
 </div>
-<ModalComponent id="keepModal">
-  <!-- <template #modalHeader>
-      header
-    </template> -->
-    <template #modalBody>
-      <KeepModalSlot/>
-    </template>
-</ModalComponent>
-<ModalComponent id="newKeepModal">
-    <template #modalBody>
-      <KeepForm/>
-    </template>
-</ModalComponent>
-<ModalComponent id="newVaultModal">
-    <template #modalBody>
-      <VaultForm/>
-    </template>
-</ModalComponent>
+
 </template>
 
 <script>

@@ -10,6 +10,11 @@ async getKeeps(){
   // logger.log(res.data)
   AppState.keeps = res.data.map(k=> new Keep(k))
 }
+async getMyKeeps(){
+  const res = await api.get('/account/keeps')
+  // logger.log('my Keeps', res.data)
+  AppState.myKeeps = res.data.map(k=> new Keep(k))
+}
 
 async setActiveKeep(keepId){
   const res = await api.get(`api/keeps/${keepId}`)
@@ -18,7 +23,7 @@ async setActiveKeep(keepId){
 async createKeep(formData){
   const res = await api.post("api/keeps", formData)
   AppState.keeps.push(new Keep(res.data))
-  logger.log(res.data)
+  // logger.log(res.data)
 }
 async getProfileKeeps(profileId){
   const res = await api.get(`api/profiles/${profileId}/keeps`)
@@ -27,7 +32,7 @@ async getProfileKeeps(profileId){
   async getVaultKeepsByVaultId(vaultId){
   const res = await api.get(`api/vaults/${vaultId}/keeps`)
   AppState.activeVaultKeeps = res.data.map(vk=> new VaultKeep(vk))
-  logger.log(AppState.activeVaultKeeps)
+  // logger.log(AppState.activeVaultKeeps)
 }
 
 }

@@ -21,6 +21,11 @@ setActiveVault(vaultId){
   const foundVault = AppState.profileVaults.find(v=> v.id == vaultId)
   AppState.activeVault = new Vault(foundVault)
 }
+setActiveVaultKeep(vaultId){
+  const foundVault = AppState.myVaults.find(v=> v.id == vaultId)
+  AppState.activeVault = new Vault(foundVault)
+
+}
 
 }
 export const vaultsService = new VaultsService()
