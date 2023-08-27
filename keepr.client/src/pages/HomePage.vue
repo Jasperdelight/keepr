@@ -1,7 +1,7 @@
 <template>
 <div class="container-fluid">
   <section class="row" >
-    <div v-for="keep in keeps" :key="keep.id" class="col-3 elevation-3 selectable" style="height: 250px; background-repeat: no-repeat; background-position: center; background-size: cover;" :style="`background-image: url(${keep.img})`">
+    <div v-for="keep in keeps" :key="keep.id" class="col-3 elevation-3" style="height: 250px; background-repeat: no-repeat; background-position: center; background-size: cover;" :style="`background-image: url(${keep.img})`">
         <KeepCardComponent :keep = "keep"/>
     </div>
   </section>

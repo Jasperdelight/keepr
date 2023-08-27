@@ -70,6 +70,7 @@ export default {
             await vaultsService.createVault(formData)
             editable.value = {}
             Modal.getOrCreateInstance('#newVaultModal').hide()
+            Pop.toast("Vault Created")
         } catch(error) {
             Pop.error(error.message);
         }

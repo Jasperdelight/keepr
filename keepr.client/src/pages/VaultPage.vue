@@ -12,8 +12,8 @@
         {{ activeVaultKeeps.length }} Keeps
       </p>
     </div>
-    <div v-for="keep in activeVaultKeeps" :key="keep.vaultKeepId" class="col-3 elevation-3 selectable" style="height: 250px; background-repeat: no-repeat; background-position: center; background-size: cover;" :style="`background-image: url(${keep.keeps.img})`">
-          <KeepCardComponent :keep = "keep.keeps"/>
+    <div v-for="keep in activeVaultKeeps" :key="keep.vaultKeepId" class="col-3 elevation-3" style="height: 250px; background-repeat: no-repeat; background-position: center; background-size: cover;" :style="`background-image: url(${keep.keeps.img})`">
+          <VaultKeepCardComponent :keep = "keep.keeps"/>
           </div>
     </section>
   </div>

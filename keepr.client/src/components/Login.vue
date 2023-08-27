@@ -1,6 +1,6 @@
 <template>
   <span class="navbar-text">
-    <button class="btn selectable text-success lighten-30 text-uppercase my-2 my-lg-0" @click="login"
+    <button class="btn selectable text-dark lighten-30 text-uppercase my-2 my-lg-0" @click="login"
       v-if="!user.isAuthenticated">
       Login
     </button>
@@ -15,12 +15,12 @@
           <div class="list-group">
             <router-link :to="{ name: 'Account' }">
               <div class="list-group-item dropdown-item list-group-item-action">
-                Manage Account
+                Account Page
               </div>
             </router-link>
             <div class="list-group-item dropdown-item list-group-item-action text-danger selectable" @click="logout">
               <i class="mdi mdi-logout"></i>
-              logout
+              Logout
             </div>
           </div>
         </div>

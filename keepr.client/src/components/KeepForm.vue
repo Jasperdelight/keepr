@@ -53,6 +53,7 @@ export default {
             const formData = editable.value
             keepsService.createKeep(formData)
             editable.value = {}
+            Pop.toast("Keep Created")
             Modal.getOrCreateInstance('#newKeepModal').hide()
         } catch(error) {
             Pop.error(error.message);

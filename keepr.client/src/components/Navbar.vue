@@ -1,8 +1,8 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-light px-3">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
-      <div class="d-flex flex-column align-items-center">
-        <img alt="logo" src="../assets/img/cw-logo.png" height="45" />
+      <div class="d-flex flex-column align-items-center text-dark selectable rounded">
+        Home
       </div>
     </router-link>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
@@ -11,8 +11,8 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
       <div class="dropdown">
-  <button class="btn btn-outline dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Create
+  <button v-if="account?.id" class="btn btn-outline dropdown-toggle selectable" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Create <i class="mdi mdi-triangle-down-outline"></i>
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
     <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#newKeepModal">New Keep </a>
@@ -31,10 +31,14 @@
 </template>
 
 <script>
+import { computed } from "vue";
 import Login from './Login.vue';
+import { AppState } from "../AppState";
 export default {
   setup() {
-    return {}
+    return {
+      account:computed(()=> AppState.account)
+    }
   },
   components: { Login }
 }
