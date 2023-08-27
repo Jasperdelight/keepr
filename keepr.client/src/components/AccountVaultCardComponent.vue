@@ -1,8 +1,11 @@
 <template>
-  <router-link :to="{name: 'Vault', params:{vaultId: vault.id}}">
+  <div class="d-flex justify-content-between">
+
+    <router-link :to="{name: 'Vault', params:{vaultId: vault.id}}">
     <button class="" @click="setMyActiveVault(vault.id)">{{ vault.name }}</button>
   </router-link>
-  <!-- <button v-if="vault.creatorId == account.id" @click="removeVault(vault.id)" class="btn btn-danger">x</button> -->
+  <button @click="removeVault(vault.id)" class="btn btn-outline-danger">x</button>
+</div>
 </template>
 
 

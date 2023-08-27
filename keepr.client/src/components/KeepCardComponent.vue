@@ -7,7 +7,7 @@
 </div>
 <div class="col-6 text-end pe-0">
   
-  <button v-if="keep.creatorId == account.id" @click="removeKeep(keep.id)" class="btn btn-danger">x</button>
+  <button v-if="keep.creatorId == account.id" @click="removeKeep(keep.id)" class="btn btn-outline-danger">x</button>
 </div>
   <!-- </section> -->
   <!-- <section class="row"> -->
