@@ -17,6 +17,10 @@ async getProfileVaults(profileId){
   const res = await api.get(`api/profiles/${profileId}/vaults`)
   AppState.profileVaults = res.data.map(v=> new Vault(v))
 }
+setActiveVault(vaultId){
+  const foundVault = AppState.profileVaults.find(v=> v.id == vaultId)
+  AppState.activeVault = new Vault(foundVault)
+}
 
 }
 export const vaultsService = new VaultsService()

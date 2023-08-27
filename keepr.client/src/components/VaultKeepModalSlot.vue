@@ -1,5 +1,5 @@
 <template>
-  <button class="btn btn-outline bg-grey " data-bs-toggle="modal" data-bs-target="#keepModal" @click="setActiveKeep(keep.id)">
+  <button class="btn btn-outline bg-grey " data-bs-toggle="modal" data-bs-target="#keepModal" @click="setActiveKeep(keep.vaultKeeperId)">
     {{ keep.name }}
   </button>
 </template>

@@ -53,6 +53,7 @@ import { logger } from "../utils/Logger";
 import {vaultKeepsService} from "../services/VaultKeepsService"
 import Pop from "../utils/Pop";
 import { useRoute } from "vue-router";
+import { Modal } from "bootstrap";
 export default {
   setup(){
     const route = useRoute({})
@@ -70,6 +71,7 @@ export default {
         vkData.keepId = keepId
         // logger.log(vaultId)
         vaultKeepsService.createVaultKeep(vkData)
+        Modal.getOrCreateInstance('#keepModal').hide()
         } catch(error) {
             Pop.error(error.message);
         }
