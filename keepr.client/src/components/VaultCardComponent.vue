@@ -1,5 +1,7 @@
 <template>
-  {{ vault.name }}
+  <router-link :to="{name: 'Vault', params:{vaultId: vault.id}}">
+    <button>{{ vault.name }}</button>
+  </router-link>
 </template>
 
 

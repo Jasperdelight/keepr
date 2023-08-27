@@ -1,5 +1,6 @@
 import { AppState } from "../AppState"
 import { Keep } from "../models/Keep"
+import { VaultKeep } from "../models/VaultKeep"
 import { logger } from "../utils/Logger"
 import { api } from "./AxiosService"
 
@@ -22,6 +23,11 @@ async createKeep(formData){
 async getProfileKeeps(profileId){
   const res = await api.get(`api/profiles/${profileId}/keeps`)
   AppState.profileKeeps = res.data.map(k=> new Keep(k))
+}
+  async getVaultKeepsByVaultId(vaultId){
+  const res = await api.get(`api/vaults/${vaultId}/keeps`)
+  AppState.activeVaultKeeps = res.data.map(vk=> new VaultKeep(vk))
+  logger.log(AppState.activeVaultKeeps)
 }
 
 }
