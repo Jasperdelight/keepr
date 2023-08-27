@@ -7,7 +7,7 @@
     <div class="col-12 text-center">
       <img class="avatar" :src="account.picture" :alt="account.name">
     </div>
-    <h1 class="text-center">{{ account.name }}</h1>
+    <h1 class="text-center">{{ account.name }} <button data-bs-toggle="modal" data-bs-target="#accountModal" class="btn btn-outline" title="Edit Account">...</button></h1>
     <p class="text-center">{{ myVaults.length }} Vaults | {{ myKeeps.length }} Keeps</p>
     <div class="col-10 m-auto">
       <h2>Vaults</h2>

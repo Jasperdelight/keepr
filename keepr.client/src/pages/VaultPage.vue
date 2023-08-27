@@ -30,17 +30,27 @@
 
 <script>
 import { computed, onMounted, watchEffect } from "vue";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import { logger } from "../utils/Logger";
 import { keepsService } from "../services/KeepsService";
 import { AppState } from "../AppState";
+import Pop from "../utils/Pop";
 
 export default {
   setup(){
-    const route = useRoute({})
+    const route = useRoute()
+    const router = useRouter()
     async function getVaultKeepsByVaultId(){
-      const vaultId = route.params.vaultId
-      keepsService.getVaultKeepsByVaultId(vaultId)
+      try{
+        let vaultId = route.params.vaultId
+        await keepsService.getVaultKeepsByVaultId(vaultId)
+      } catch(error) {
+          Pop.error(error.response.data);
+          // logger.log(error.response.data)
+          if(error.response.data.includes('😌')){
+          router.push({name: "Home"})
+        }
+      }
     }
     onMounted(()=> {
       getVaultKeepsByVaultId()

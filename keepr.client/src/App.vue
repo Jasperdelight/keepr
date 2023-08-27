@@ -26,6 +26,11 @@
       <VaultForm/>
     </template>
 </ModalComponent>
+<ModalComponent id="accountModal">
+    <template #modalBody>
+      <AccountForm/>
+    </template>
+</ModalComponent>
 </template>
 
 <script>

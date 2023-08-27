@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Http;
+
 namespace keepr.Controllers;
 
 [ApiController]
@@ -54,6 +56,22 @@ public class AccountController : ControllerBase
       Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
       List<Keep> keeps = _keepsService.getAccountKeeps(userInfo.Id);
     return Ok(keeps);
+    }
+     catch(Exception e) 
+    {
+        return BadRequest(e.Message);
+    }
+  }
+  
+  [HttpPut]
+  [Authorize]
+  public async Task<ActionResult<Account>> EditAccount([FromBody]Account editData)
+  {
+    try
+    {
+      Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
+      Account account = _accountService.Edit(editData, userInfo.Email);
+    return Ok(account);
     }
      catch(Exception e) 
     {

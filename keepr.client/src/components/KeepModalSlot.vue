@@ -27,10 +27,10 @@
         <!-- Footer (saveForm, creator info) -->
         <section class="row">
           <div class="col-10 d-flex mb-3">
-      <select v-model="editable.vaultId" class="form-select" placeholder="Vault.." id="Vault" required>
+      <select v-if="account?.id" v-model="editable.vaultId" class="form-select" placeholder="Vault.." id="Vault" required>
         <option v-for="vault in myVaults" :key="vault.id" :value="vault.id">{{ vault.name }}</option>
       </select>
-      <button class="btn btn-secondary" @click="createVaultKeep(activeKeep.id)">Save</button>
+      <button v-if="account?.id" class="btn btn-secondary" @click="createVaultKeep(activeKeep.id)">Save</button>
           </div>
 
           <div class="col-2">
@@ -65,6 +65,7 @@ export default {
       editable,
       activeKeep: computed(()=> AppState.activeKeep),
       myVaults: computed(()=> AppState.myVaults),
+      account: computed(()=> AppState.account),
       async createVaultKeep(keepId){
         try{
           const vkData = editable.value
