@@ -18,6 +18,11 @@
       <KeepForm/>
     </template>
 </ModalComponent>
+<ModalComponent id="vaultKeepModal">
+    <template #modalBody>
+      <vaultKeepModalSlot/>
+    </template>
+</ModalComponent>
 <ModalComponent id="newVaultModal">
     <template #modalBody>
       <VaultForm/>
