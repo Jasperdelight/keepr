@@ -1,6 +1,6 @@
 <template>
   <button class="btn btn-outline bg-grey " data-bs-toggle="modal" data-bs-target="#keepModal" @click="setActiveKeep(keep.vaultKeeperId)">
-    {{ keep.name }}
+    {{ keep.name }} test
   </button>
 </template>
 

@@ -1,6 +1,6 @@
 <template>
   <router-link :to="{name: 'Vault', params:{vaultId: vault.id}}">
-    <button class="" @click="setActiveVault(vault.id)">{{ vault.name }}</button>
+    <button class="" @click="setMyActiveVault(vault.id)">{{ vault.name }}</button>
   </router-link>
   <!-- <button v-if="vault.creatorId == account.id" @click="removeVault(vault.id)" class="btn btn-danger">x</button> -->
 </template>
@@ -22,9 +22,9 @@ export default {
     
     return {
       account: computed(()=> AppState.account),
-      setActiveVault(vaultId){
+      setMyActiveVault(vaultId){
         try{
-            vaultsService.setActiveVault(vaultId)
+            vaultsService.setMyActiveVault(vaultId)
         } catch(error) {
             Pop.error(error.message);
         }

@@ -18,7 +18,12 @@ async getProfileVaults(profileId){
   AppState.profileVaults = res.data.map(v=> new Vault(v))
 }
 setActiveVault(vaultId){
-  const foundVault = AppState.profileVaults.find(v=> v.id == vaultId)
+  let foundVault = AppState.profileVaults.find(v=> v.id == vaultId)
+
+  AppState.activeVault = new Vault(foundVault)
+}
+setMyActiveVault(vaultId){
+  let foundVault = AppState.myVaults.find(v=>v.id ==vaultId)
   AppState.activeVault = new Vault(foundVault)
 }
 setActiveVaultKeep(vaultId){

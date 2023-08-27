@@ -13,7 +13,7 @@
       <h2>Vaults</h2>
       <section class="row">
         <div v-for="vault in myVaults" :key="vault.id" class="col-3 elevation-3" style="height: 150px; background-repeat: no-repeat; background-position: center; background-size: cover;" :style="`background-image: url(${vault.img})`">
-          <VaultCardComponent :vault = "vault"/>
+          <AccountVaultCardComponent :vault = "vault"/>
         </div>
       </section>
     </div>
