@@ -8,9 +8,11 @@
    <footer class="bg-dark text-light">
     Made with 💖 by CodeWorks
   </footer>
+  
 </template>
 
 <script>
+
 import { computed } from 'vue'
 import { AppState } from './AppState'
 import Navbar from './components/Navbar.vue'

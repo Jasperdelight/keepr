@@ -6,7 +6,7 @@
         <img :src="activeKeep.img" alt="" class="img-fluid" style="height: 100%;">
       </div>
       <!-- Information half RIGHT -->
-      <div class="col-6">
+      <div class="col-6 d-grid align-items-center mt-3">
         <!-- Header (views/kept) -->
         <section class="row">
           <div class="col-12">
@@ -21,16 +21,23 @@
         <section class="row">
           <div class="col-12">
             <p class="fs-4 text-center">{{ activeKeep.name }}</p>
-            <p>{{ activeKeep.description }}</p>
+            <p class="px-2">{{ activeKeep.description }}</p>
           </div>
         </section>
         <!-- Footer (saveForm, creator info) -->
         <section class="row">
-          <div class="col-6"></div>
+          <div class="col-10 d-flex mb-3">
+      <select v-model="editable.vaultId" class="form-select" placeholder="Vault.." id="Vault" required>
+        <option v-for="vault in myVaults" :key="vault.id" :value="vault.id">{{ vault.name }}</option>
+      </select>
+      <button class="btn btn-secondary" @click="createVaultKeep(activeKeep.id)">Save</button>
+          </div>
 
-          <div class="col-6">
-            <img class="profile-img" :src="activeKeep.creator.picture" :alt="activeKeep.creator.name" :title="activeKeep.creator.name">
-            <p>{{ activeKeep.creator.name }}</p>
+          <div class="col-2">
+            <router-link :to= "{name: 'Profile', params:{profileId: activeKeep.creator.id}}"  >
+              <img data-bs-dismiss="modal" class="profile-img" :src="activeKeep.creator.picture" :alt="activeKeep.creator.name" :title="activeKeep.creator.name">
+              <!-- <p data-bs-dismiss="modal">{{ activeKeep.creator.name }}</p> -->
+            </router-link>
           </div>
         </section>
       </div>
@@ -40,13 +47,33 @@
 
 
 <script>
-import { computed } from "vue";
+import { computed, ref, watchEffect } from "vue";
 import { AppState } from "../AppState";
-
+import { logger } from "../utils/Logger";
+import {vaultKeepsService} from "../services/VaultKeepsService"
+import Pop from "../utils/Pop";
+import { useRoute } from "vue-router";
 export default {
   setup(){
+    const route = useRoute({})
+    const editable = ref({})
+    watchEffect(()=>{
+      route.params
+    })
     return {
-      activeKeep: computed(()=> AppState.activeKeep)
+      editable,
+      activeKeep: computed(()=> AppState.activeKeep),
+      myVaults: computed(()=> AppState.myVaults),
+      async createVaultKeep(keepId){
+        try{
+          const vkData = editable.value
+        vkData.keepId = keepId
+        // logger.log(vaultId)
+        vaultKeepsService.createVaultKeep(vkData)
+        } catch(error) {
+            Pop.error(error.message);
+        }
+      }
     }
   }
 }
@@ -55,8 +82,8 @@ export default {
 
 <style lang="scss" scoped>
 .profile-img{
-  height: 60px;
-  width: 60px;
+  height: 30px;
+  width: 30px;
   border-radius: 50%;
 }
 

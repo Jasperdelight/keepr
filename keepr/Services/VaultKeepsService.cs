@@ -20,6 +20,10 @@ public class VaultKeepsService
     internal VaultKeep CreateVaultKeep(VaultKeep vkData)
     {
       int vaultKeepId = _vaultKeepsRepository.CreateVaultKeep(vkData);
+      // if (vkData.vaultKeepId == vaultKeepId)
+      // {
+      //   throw new Exception("can not have more than one keep in your vault!");
+      // }
       VaultKeep vaultKeep = GetVaultKeepById(vaultKeepId, vkData.CreatorId);
      Keep keep = _keepsService.GetKeepByIdAndIncreaseVisits(vkData.KeepId, vaultKeep.Creator.Id);
      vaultKeep.Keeps =keep;

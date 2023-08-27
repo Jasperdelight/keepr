@@ -4,8 +4,11 @@ CREATE TABLE IF NOT EXISTS accounts(
   updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Last Update',
   name varchar(255) COMMENT 'User Name',
   email varchar(255) COMMENT 'User Email',
-  picture varchar(255) COMMENT 'User Picture'
+  picture varchar(255) COMMENT 'User Picture',
+  coverImg varchar(255)
 ) default charset utf8 COMMENT '';
+
+DROP TABLE accounts;
 
 CREATE TABLE keeps(
   id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -32,7 +35,7 @@ CREATE TABLE vaults(
 )default charset utf8 COMMENT '';
 
 CREATE TABLE vaultKeeps(
-  id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  vaultKeepId INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
   creatorId VARCHAR(255) NOT NULL,
   vaultId INT NOT NULL,
   keepId INT NOT NULL,
@@ -40,6 +43,5 @@ CREATE TABLE vaultKeeps(
   updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Last Update',
   FOREIGN KEY (creatorId) REFERENCES accounts(id) ON DELETE CASCADE,
   FOREIGN KEY (vaultId) REFERENCES vaults(id) ON DELETE CASCADE,
-  FOREIGN KEY (keepId) REFERENCES keeps(id) ON DELETE CASCADE,
-  UNIQUE (vaultId, creatorId)
+  FOREIGN KEY (keepId) REFERENCES keeps(id) ON DELETE CASCADE
 )default charset utf8 COMMENT '';

@@ -52,7 +52,7 @@ public class KeepsRepository
         string sql = @"
     SELECT
     k.*,
-    COUNT(vk.id) AS kept,
+    COUNT(vk.vaultKeepId) AS kept,
     acc.*
     FROM keeps k
     LEFT JOIN vaultKeeps vk ON vk.keepId = k.id

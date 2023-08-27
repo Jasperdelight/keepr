@@ -19,6 +19,10 @@ async createKeep(formData){
   AppState.keeps.push(new Keep(res.data))
   logger.log(res.data)
 }
+async getProfileKeeps(profileId){
+  const res = await api.get(`api/profiles/${profileId}/keeps`)
+  AppState.profileKeeps = res.data.map(k=> new Keep(k))
+}
 
 }
 export const keepsService = new KeepsService()

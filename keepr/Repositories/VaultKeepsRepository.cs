@@ -36,7 +36,7 @@ public class VaultKeepsRepository
       FROM vaultKeeps vk
       JOIN accounts acc ON acc.id = vk.creatorId
       JOIN keeps k ON k.id = vk.keepId
-      WHERE vk.id = @vaultKeepId
+      WHERE vk.vaultKeepId = @vaultKeepId
       ;";
       VaultKeep vaultKeep = _db.Query<VaultKeep, Profile, Keep, VaultKeep>(
         sql,

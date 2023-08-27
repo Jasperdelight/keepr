@@ -1,6 +1,6 @@
 <template>
 <div class="container-fluid">
-  <section class="row">
+  <section class="row" >
     <div v-for="keep in keeps" :key="keep.id" class="col-3 elevation-3 selectable" style="height: 250px; background-repeat: no-repeat; background-position: center; background-size: cover;" :style="`background-image: url(${keep.img})`">
         <KeepCardComponent :keep = "keep"/>
     </div>
@@ -21,18 +21,20 @@
 </ModalComponent>
 <ModalComponent id="newVaultModal">
     <template #modalBody>
-      Vault Form
+      <VaultForm/>
     </template>
 </ModalComponent>
 </template>
 
 <script>
-import { computed, onMounted } from "vue";
+import { computed, onMounted, watchEffect } from "vue";
 import Pop from "../utils/Pop";
 import {keepsService} from "../services/KeepsService"
 import { AppState } from "../AppState";
 import ModalComponent from "../components/ModalComponent.vue";
 import KeepForm from "../components/KeepForm.vue";
+import { vaultsService } from "../services/VaultsService";
+import { useRoute } from "vue-router";
 
 export default {
     setup() {
@@ -44,14 +46,26 @@ export default {
                 Pop.error(error.message);
             }
         }
+        // async function getMyVaults(){
+        //   try{
+              
+        //       await vaultsService.getMyVaults()
+        //   } catch(error) {
+        //       Pop.error(error.message);
+        //   }
+        // }
         onMounted(() => {
             getKeeps();
         });
+        watchEffect(()=>{
+
+
+        })
         return {
-            keeps: computed(() => AppState.keeps)
+            keeps: computed(() => AppState.keeps),
+            account: computed(()=> AppState?.account)
         };
     },
-    components: { ModalComponent, KeepForm }
 }
 </script>
 
