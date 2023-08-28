@@ -36,6 +36,20 @@ async getProfileKeeps(profileId){
   AppState.activeVaultKeeps = res.data.map(vk=> new VaultKeep(vk))
   // logger.log(AppState.activeVaultKeeps)
 }
+  async removeKeep(keepId){
+  const res = await api.delete(`api/keeps/${keepId}`)
+  const myKeepIndex = AppState.myKeeps.findIndex(k => k.id == keepId)
+  if (myKeepIndex == -1) {
+    throw new Error("This is a bad id")
+  }
+  AppState.myKeeps.splice(myKeepIndex, 1)
+  // logger.log('keep removed?', res.data)
+  const keepIndex = AppState.keeps.findIndex(k => k.id == keepId)
+  if (keepIndex == -1) {
+    throw new Error("This is a bad id")
+  }
+  AppState.keeps.splice(keepIndex, 1)
+}
 
 }
 export const keepsService = new KeepsService()

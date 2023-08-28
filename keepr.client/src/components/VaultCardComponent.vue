@@ -1,8 +1,12 @@
 <template>
-  <router-link :to="{name: 'Vault', params:{vaultId: vault.id}}">
-    <button class="" @click="setActiveVault(vault.id)">{{ vault.name }}</button>
-  </router-link>
-  <!-- <button v-if="vault.creatorId == account.id" @click="removeVault(vault.id)" class="btn btn-danger">x</button> -->
+  <div class="d-flex justify-content-between">
+
+    <router-link :to="{name: 'Vault', params:{vaultId: vault.id}}">
+      <button class="" @click="setActiveVault(vault.id)">{{ vault.name }}</button>
+    </router-link>
+    <i v-if="vault.isPrivate" title="Vault is Private" class="mdi mdi-magnify text-white text-shadow rounded"></i>
+  </div>
+    <!-- <button v-if="vault.creatorId == account.id" @click="removeVault(vault.id)" class="btn btn-danger">x</button> -->
 </template>
 
 
@@ -29,13 +33,7 @@ export default {
             Pop.error(error.message);
         }
       },
-      removeVault(vaultId){
-        try{
-            logger.log(vaultId)
-        } catch(error) {
-            Pop.error(error.message);
-        }
-      }
+
     }
   }
 }

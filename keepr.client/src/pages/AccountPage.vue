@@ -22,7 +22,7 @@
       <h3>Keeps</h3>
       <section class="row">
         <div v-for="keep in myKeeps" :key="keep.id" class="col-3 elevation-3" style="height: 250px; background-repeat: no-repeat; background-position: center; background-size: cover;" :style="`background-image: url(${keep.img})`">
-          <KeepCardComponent :keep = "keep"/>
+          <AccountKeepCardComponent :keep = "keep"/>
           </div>
       </section>
     </div>

@@ -31,6 +31,15 @@ setActiveVaultKeep(vaultId){
   AppState.activeVault = new Vault(foundVault)
 
 }
+async removeVault(vaultId){
+  const res = await api.delete(`api/vaults/${vaultId}`)
+  const vaultIndex = AppState.myVaults.findIndex(v => v.id == vaultId)
+  if (vaultIndex == -1) {
+    throw new Error("This is a bad id")
+  }
+  AppState.myVaults.splice(vaultIndex, 1)
+  logger.log('vault removed?', res.data)
+}
 
 }
 export const vaultsService = new VaultsService()

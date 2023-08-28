@@ -32,9 +32,11 @@ export default {
             Pop.error(error.message);
         }
       },
-      removeVault(vaultId){
+      async removeVault(vaultId){
         try{
-            logger.log(vaultId)
+          const wantsToRemove = await Pop.confirm('Are you sure you want to remove this Vault?')
+          if (!wantsToRemove) { return }
+            await vaultsService.removeVault(vaultId)
         } catch(error) {
             Pop.error(error.message);
         }

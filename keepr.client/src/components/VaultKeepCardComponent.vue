@@ -7,7 +7,7 @@
 </div>
 <div class="col-6 text-end pe-0">
   
-  <button v-if="keep.creator.id == account.id" @click="removeKeep(keep.vaultKeepId)" class="btn btn-danger">x</button>
+  <button v-if="keep.creator.id == account.id" @click="removeVaultKeep(keep.vaultKeepId)" class="btn btn-outline-danger">x</button>
 </div>
   <!-- </section> -->
   <!-- <section class="row"> -->
@@ -27,6 +27,7 @@ import { AppState } from "../AppState";
 import { logger } from "../utils/Logger";
 import Pop from "../utils/Pop";
 import { keepsService } from "../services/KeepsService";
+import { vaultKeepsService } from "../services/VaultKeepsService";
 export default {
   props: {
     keep: {type: Object, required: true}
@@ -36,14 +37,17 @@ export default {
       account: computed(()=> AppState.account),
       async setActiveKeep(keepId){
         try{
+          
             await keepsService.setActiveKeep(keepId)
         } catch(error) {
             Pop.error(error.message);
         }
       },
-      async removeKeep(keepId){
+      async removeVaultKeep(keepId){
         try{
-            logger.log('keepId', keepId)
+          const wantsToRemove = await Pop.confirm('Are you sure you want to remove this Vault?')
+          if (!wantsToRemove) { return }
+            await vaultKeepsService.removeVaultKeep(keepId)
         } catch(error) {
             Pop.error(error.message);
         }

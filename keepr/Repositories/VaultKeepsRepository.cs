@@ -78,7 +78,7 @@ public class VaultKeepsRepository
 
     internal void RemoveVaultKeep(int vaultKeepId)
     {
-      string sql = "DELETE FROM vaultKeeps WHERE id = @vaultKeepId LIMIT 1 ;";
+      string sql = "DELETE FROM vaultKeeps WHERE vaultKeepId = @vaultKeepId LIMIT 1 ;";
       _db.Execute(sql, new{vaultKeepId});
     }
 }
