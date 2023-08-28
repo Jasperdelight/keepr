@@ -1,5 +1,5 @@
 <template>
-<div class="container-fluid">
+<div class="container-fluid m-auto">
   <section class="grid" ref="grid">
     <div v-for="keep in keeps" :key="keep.id" class="grid-item" style=" background-repeat: no-repeat; background-position:0%; background-size: cover;" :style="`background-image: url(${keep.img})`">
       <img :src="keep.img" alt="" class="img-fluid">
@@ -35,7 +35,8 @@ export default {
           getKeeps();
               const masonry = new Masonry(grid.value, {
                 itemSelector: ".grid-item",
-                gutter: 10,
+                columnWidth:50,
+                gutter: 90,
               });
         });
         watchEffect(()=>{})
@@ -52,9 +53,7 @@ export default {
 
 <style scoped lang="scss">
 .grid-item{
-  width: 200px;
-  img {
-    width: 100%;
-  }
+  width: 20%;
+
 }
 </style>
