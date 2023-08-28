@@ -1,8 +1,8 @@
 <template>
 <div class="container-fluid m-auto">
-  <section class="grid" ref="grid">
-    <div v-for="keep in keeps" :key="keep.id" class="grid-item" style=" background-repeat: no-repeat; background-position:0%; background-size: cover;" :style="`background-image: url(${keep.img})`">
-      <img :src="keep.img" alt="" class="img-fluid">
+  <section class="row">
+    <div v-for="keep in keeps" :key="keep.id" class="col-4" style=" background-repeat: no-repeat; background-position:0%; height: 20rem; background-size: cover;" :style="`background-image: url(${keep.img})`">
+      <!-- <img :src="keep.img" alt="" class="img-fluid"> -->
         <KeepCardComponent :keep = "keep"/>
     </div>
   </section>
@@ -33,19 +33,19 @@ export default {
         }
         onMounted(() => {
           getKeeps();
-              const masonry = new Masonry(grid.value, {
-                itemSelector: ".grid-item",
-                // columnWidth:200,
-                // gutter: 50,
-                percentPosition: true
+              // const masonry = new Masonry(grid.value, {
+              //   itemSelector: ".grid-item",
+              //   columnWidth:200,
+              //   gutter: 50,
+              //   percentPosition: true
 
-              });
+              // });
         });
         watchEffect(()=>{})
         return {
             keeps: computed(() => AppState.keeps),
             account: computed(()=> AppState?.account),
-            grid,
+            
             
              
         };

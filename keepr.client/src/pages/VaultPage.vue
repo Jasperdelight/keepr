@@ -5,7 +5,7 @@
         <p class="fs-3 text-center mb-0 pb-0">{{ activeVault.name }}</p>
       </div>
       <div class="col-10 m-auto text-center">
-      <img class="img-fluid cover-img rounded" :src="activeVault.img" :alt="activeVault.name">
+      <img class="img-fluid cover-img rounded" :src="activeVault.img" alt="Vault Name">
     </div>
     <div class="col-12 m-auto text-center">
       <p class="">

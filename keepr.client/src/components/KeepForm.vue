@@ -15,7 +15,7 @@
   <div class="form-group">
       <!-- <label for="name" class="">Name</label> -->
       
-      <input v-model="editable.name" class="form-control " type="text" placeholder="Name.." id="name" required>
+      <input v-model="editable.name" class="form-control " type="text" placeholder="Name.." id="keepName" required>
 
   </div>
   <div class="form-group">
