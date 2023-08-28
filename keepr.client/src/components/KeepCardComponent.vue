@@ -5,7 +5,7 @@
     {{ keep.name }}
   </button>
 </div>
-<div class="col-6 text-end pe-0">
+<div class="col-6 text-end">
   
   <button v-if="keep.creatorId == account.id" @click="removeKeep(keep.id)" class="btn btn-outline-danger">x</button>
 </div>
@@ -64,7 +64,6 @@ export default {
   border-radius: 50%;
   object-fit: cover;
   position: relative;
-  top: 350%;
 }
 
 </style>

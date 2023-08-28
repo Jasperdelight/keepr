@@ -1,7 +1,8 @@
 <template>
 <div class="container-fluid">
-  <section class="row" >
-    <div v-for="keep in keeps" :key="keep.id" class="col-3 elevation-3" style="height: 250px; background-repeat: no-repeat; background-position: center; background-size: cover;" :style="`background-image: url(${keep.img})`">
+  <section class="grid" ref="grid">
+    <div v-for="keep in keeps" :key="keep.id" class="grid-item" style=" background-repeat: no-repeat; background-position:0%; background-size: cover;" :style="`background-image: url(${keep.img})`">
+      <img :src="keep.img" alt="" class="img-fluid">
         <KeepCardComponent :keep = "keep"/>
     </div>
   </section>
@@ -10,7 +11,7 @@
 </template>
 
 <script>
-import { computed, onMounted, watchEffect } from "vue";
+import { computed, onMounted, ref, watchEffect } from "vue";
 import Pop from "../utils/Pop";
 import {keepsService} from "../services/KeepsService"
 import { AppState } from "../AppState";
@@ -18,10 +19,11 @@ import ModalComponent from "../components/ModalComponent.vue";
 import KeepForm from "../components/KeepForm.vue";
 import { vaultsService } from "../services/VaultsService";
 import { useRoute } from "vue-router";
-
+import Masonry from "masonry-layout"
 export default {
     setup() {
-        async function getKeeps() {
+      const grid = ref(null);
+      async function getKeeps() {
             try {
                 await keepsService.getKeeps();
             }
@@ -29,46 +31,30 @@ export default {
                 Pop.error(error.message);
             }
         }
-        // async function getMyVaults(){
-        //   try{
-              
-        //       await vaultsService.getMyVaults()
-        //   } catch(error) {
-        //       Pop.error(error.message);
-        //   }
-        // }
         onMounted(() => {
-            getKeeps();
+          getKeeps();
+              const masonry = new Masonry(grid.value, {
+                itemSelector: ".grid-item",
+                gutter: 10,
+              });
         });
-        watchEffect(()=>{
-
-
-        })
+        watchEffect(()=>{})
         return {
             keeps: computed(() => AppState.keeps),
-            account: computed(()=> AppState?.account)
+            account: computed(()=> AppState?.account),
+            grid,
+            
+             
         };
     },
 }
 </script>
 
 <style scoped lang="scss">
-.home {
-  display: grid;
-  height: 80vh;
-  place-content: center;
-  text-align: center;
-  user-select: none;
-
-
-  .home-card {
-    width: 50vw;
-
-    .card-img {
-      min-height: 200px;
-      min-width: 200px;
-      background-repeat: no-repeat;
-    }
+.grid-item{
+  width: 200px;
+  img {
+    width: 100%;
   }
 }
 </style>

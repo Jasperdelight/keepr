@@ -7,6 +7,7 @@ import { registerGlobalComponents } from './registerGlobalComponents'
 import { router } from './router'
 import './utils/SocketProvider.js'
 
+
 const root = createApp(App)
 registerGlobalComponents(root)
 
