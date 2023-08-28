@@ -6,13 +6,13 @@ import { api } from "./AxiosService"
 class VaultKeepsService{
 async createVaultKeep(vkData){
   const res = await api.post("api/vaultkeeps", vkData)
-  // logger.log(res.data)
+  logger.log(res.data)
   Pop.toast(`Saved to vault!`)
   
 }
 async removeVaultKeep(keepId){
   const res = await api.delete(`api/vaultkeeps/${keepId}`)
-  const vkIndex = AppState.activeVaultKeeps.findIndex(vk => vk.id == keepId)
+  const vkIndex = AppState.activeVaultKeeps.findIndex(vk => vk.vaultKeepId == keepId)
   if (vkIndex == -1) {
     throw new Error("Bad ID ")
   }

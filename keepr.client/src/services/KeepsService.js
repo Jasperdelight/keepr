@@ -34,7 +34,7 @@ async getProfileKeeps(profileId){
   async getVaultKeepsByVaultId(vaultId){
   const res = await api.get(`api/vaults/${vaultId}/keeps`)
   AppState.activeVaultKeeps = res.data.map(vk=> new VaultKeep(vk))
-  // logger.log(AppState.activeVaultKeeps)
+  logger.log(AppState.activeVaultKeeps)
 }
   async removeKeep(keepId){
   const res = await api.delete(`api/keeps/${keepId}`)

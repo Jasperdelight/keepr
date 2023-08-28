@@ -1,13 +1,13 @@
 <template>
   <section class="row d-flex">
 <div class="col-6">
-  <button style="height: 4rem;" class="btn btn-outline bg-grey " data-bs-toggle="modal" data-bs-target="#vaultKeepModal" @click="setActiveKeep(keep.keepId)">
-    {{ keep.keeps.name }}
+  <button style="height: 4rem;" class="btn btn-outline bg-grey " data-bs-toggle="modal" data-bs-target="#vaultKeepModal" @click="setActiveKeep(keep.id)">
+    {{ keep.name }}
   </button>
 </div>
 <div class="col-6 text-end pe-0">
   
-  <button v-if="keep.creator.id == account.id" @click="removeVaultKeep(keep.id)" class="btn btn-outline-danger">x</button>
+  <button v-if="keep.creator.id == account.id" @click="removeVaultKeep(keep.vaultKeepId)" class="btn btn-outline-danger">x</button>
 </div>
   <!-- </section> -->
   <!-- <section class="row"> -->

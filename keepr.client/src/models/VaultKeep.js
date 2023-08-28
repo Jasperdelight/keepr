@@ -6,8 +6,11 @@ constructor(data){
   this.keepId = data.keepId
   this.vaultId = data.vaultId
   this.creator = data.creator
-  this.keeps = data.keeps
   this.updatedAt = data.updatedAt
   this.createdAt = data.createdAt
+  this.name = data.name
+  this.description = data.description
+  this.vaultKeepId = data.vaultKeepId
+  this.img = data.img
 }
 }
