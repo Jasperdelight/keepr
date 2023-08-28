@@ -23,6 +23,8 @@ async setActiveKeep(keepId){
 async createKeep(formData){
   const res = await api.post("api/keeps", formData)
   AppState.keeps.push(new Keep(res.data))
+  AppState.myKeeps.push(new Keep(res.data))
+  
   // logger.log(res.data)
 }
 async getProfileKeeps(profileId){
