@@ -35,7 +35,7 @@ CREATE TABLE vaults(
 )default charset utf8 COMMENT '';
 
 CREATE TABLE vaultKeeps(
-  vaultKeepId INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
   creatorId VARCHAR(255) NOT NULL,
   vaultId INT NOT NULL,
   keepId INT NOT NULL,

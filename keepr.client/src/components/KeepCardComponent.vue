@@ -1,7 +1,7 @@
 <template>
   <section class="row d-flex">
 <div class="col-6">
-  <button style="height: 4rem;" class="btn btn-outline bg-grey " data-bs-toggle="modal" data-bs-target="#keepModal" @click="setActiveKeep(keep.id)">
+  <button style="height: 5rem;" class="btn btn-outline bg-grey " data-bs-toggle="modal" data-bs-target="#keepModal" @click="setActiveKeep(keep.id)">
     {{ keep.name }}
   </button>
 </div>

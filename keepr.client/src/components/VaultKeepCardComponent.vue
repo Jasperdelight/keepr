@@ -7,7 +7,7 @@
 </div>
 <div class="col-6 text-end pe-0">
   
-  <button v-if="keep.creator.id == account.id" @click="removeVaultKeep(keep.vaultKeepId)" class="btn btn-outline-danger">x</button>
+  <button v-if="keep.creator.id == account.id" @click="removeVaultKeep(keep.id)" class="btn btn-outline-danger">x</button>
 </div>
   <!-- </section> -->
   <!-- <section class="row"> -->

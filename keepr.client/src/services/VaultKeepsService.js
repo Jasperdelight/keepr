@@ -12,7 +12,7 @@ async createVaultKeep(vkData){
 }
 async removeVaultKeep(keepId){
   const res = await api.delete(`api/vaultkeeps/${keepId}`)
-  const vkIndex = AppState.activeVaultKeeps.findIndex(vk => vk.vaultKeepId == keepId)
+  const vkIndex = AppState.activeVaultKeeps.findIndex(vk => vk.id == keepId)
   if (vkIndex == -1) {
     throw new Error("Bad ID ")
   }

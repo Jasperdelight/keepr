@@ -31,7 +31,7 @@ public class KeepsRepository
       string sql = @"
       SELECT
       k.*,
-      COUNT(vk.vaultKeepId) AS kept,
+      COUNT(vk.id) AS kept,
       acc.*
       FROM keeps k
       LEFT JOIN vaultKeeps vk ON vk.keepId = k.id
@@ -55,7 +55,7 @@ public class KeepsRepository
       string sql = @"
     SELECT
     k.*,
-    COUNT(vk.vaultKeepId) AS kept,
+    COUNT(vk.id) AS kept,
     acc.*
     FROM keeps k
     LEFT JOIN vaultKeeps vk ON vk.keepId = k.id
@@ -79,7 +79,7 @@ public class KeepsRepository
         string sql = @"
     SELECT
     k.*,
-    COUNT(vk.vaultKeepId) AS kept,
+    COUNT(vk.id) AS kept,
     acc.*
     FROM keeps k
     LEFT JOIN vaultKeeps vk ON vk.keepId = k.id
@@ -103,7 +103,7 @@ public class KeepsRepository
       SELECT
       k.*,
       acc.*,
-      COUNT(vk.vaultKeepId) AS kept
+      COUNT(vk.id) AS kept
       FROM keeps k
       LEFT JOIN vaultKeeps vk ON vk.keepId = k.id
       JOIN accounts acc ON acc.id = k.creatorId

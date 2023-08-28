@@ -17,30 +17,36 @@ public class VaultKeepsService
         _vaultsService = vaultsService;
         _keepsService = keepsService;
     }
-    internal VaultKeep CreateVaultKeep(VaultKeep vkData)
+    internal VaultKeep CreateVaultKeep(VaultKeep vkData, string userId)
     {
-      int vaultKeepId = _vaultKeepsRepository.CreateVaultKeep(vkData);
+      Vault vault = _vaultsService.GetVaultById(vkData.VaultId, userId);
+       if (vault.CreatorId !=userId)
+      {
+        throw new Exception("Not your Vault");
+      }
+      VaultKeep vaultKeepId = _vaultKeepsRepository.CreateVaultKeep(vkData);
+     
       // if (vkData.vaultKeepId == vaultKeepId)
       // {
       //   throw new Exception("can not have more than one keep in your vault!");
       // }
-      VaultKeep vaultKeep = GetVaultKeepById(vaultKeepId, vkData.CreatorId);
-     Keep keep = _keepsService.GetKeepById(vkData.KeepId, vaultKeep.Creator.Id);
-     vaultKeep.Keeps =keep;
+      // VaultKeepViewModel vaultKeep = GetVaultKeepById(vaultKeepId, vkData.CreatorId);
+    //  Keep keep = _keepsService.GetKeepById(vkData.KeepId, vaultKeep.Creator.Id);
+    //  vaultKeep.Keeps =keep;
 
-      return vaultKeep;
+      return vaultKeepId;
     }
 
-    internal List<VaultKeep> GetVaultKeepsByVaultId(int vaultId, string userId)
+    internal List<VaultKeepViewModel> GetVaultKeepsByVaultId(int vaultId, string userId)
     {
       _vaultsService.GetVaultById(vaultId, userId);
-      List<VaultKeep> vaultKeeps = _vaultKeepsRepository.GetVaultKeepsByVaultId(vaultId);
+      List<VaultKeepViewModel> vaultKeeps = _vaultKeepsRepository.GetVaultKeepsByVaultId(vaultId);
       return vaultKeeps;
     }
 
-    internal VaultKeep GetVaultKeepById(int vaultKeepId, string userId)
+    internal VaultKeepViewModel GetVaultKeepById(int vaultKeepId, string userId)
     {
-      VaultKeep vaultKeep = _vaultKeepsRepository.GetVaultKeepById(vaultKeepId);
+      VaultKeepViewModel vaultKeep = _vaultKeepsRepository.GetVaultKeepById(vaultKeepId);
       if (vaultKeep == null)
       {
         throw new Exception("Bad vaultKeep Id");
@@ -50,7 +56,7 @@ public class VaultKeepsService
 
     internal string RemoveVaultKeep(int vaultKeepId, string userId)
     {
-      VaultKeep vaultKeep = GetVaultKeepById(vaultKeepId, userId);
+      VaultKeepViewModel vaultKeep = GetVaultKeepById(vaultKeepId, userId);
       if (vaultKeep.CreatorId != userId)
       {
         throw new Exception("Not your VAULTKEEP");

@@ -2,11 +2,11 @@
   <div class="container-fluid" v-if="activeKeep">
     <section class="row">
       <!-- Image half Modal LEFT -->
-      <div class="col-6 p-0">
+      <div class="col-md-6 col-12 p-0">
         <img :src="activeKeep.img" alt="" class="img-fluid" style="height: 100%;">
       </div>
       <!-- Information half RIGHT -->
-      <div class="col-6 d-grid align-items-center mt-3">
+      <div class="col-md-6 col-12 d-grid align-items-center mt-3">
         <!-- Header (views/kept) -->
         <section class="row">
           <div class="col-12">
@@ -70,7 +70,7 @@ export default {
         try{
           const vkData = editable.value
         vkData.keepId = keepId
-        // logger.log(vaultId)
+        logger.log(keepId)
         vaultKeepsService.createVaultKeep(vkData)
         Modal.getOrCreateInstance('#keepModal').hide()
         } catch(error) {

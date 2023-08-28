@@ -35,8 +35,10 @@ export default {
           getKeeps();
               const masonry = new Masonry(grid.value, {
                 itemSelector: ".grid-item",
-                columnWidth:50,
-                gutter: 90,
+                // columnWidth:200,
+                // gutter: 50,
+                percentPosition: true
+
               });
         });
         watchEffect(()=>{})
@@ -53,7 +55,8 @@ export default {
 
 <style scoped lang="scss">
 .grid-item{
-  width: 20%;
+  width: 25%;
+  // margin-left: 15%;
 
 }
 </style>

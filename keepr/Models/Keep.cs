@@ -19,4 +19,5 @@ public class Keep : RepoItem<int>
 public class VaultKeepViewModel :Keep
 {
   public int VaultKeepId {get; set;}
+  // public int KeepId { get; set; }
 }
