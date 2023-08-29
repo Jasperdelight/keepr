@@ -5,6 +5,7 @@
   <main class="bg-white">
     <router-view />
   </main>
+  <footer class="bg-white text-white"> I like Cheese</footer>
   <ModalComponent id="keepModal">
   <!-- <template #modalHeader>
       header
