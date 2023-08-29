@@ -64,11 +64,12 @@ img {
 and (max-width : 390px){
   column-count: 2;
 }
-// @media only screen 
-// and (min-width : 1224px){
-// }
-column-count: 4;
- column-gap: 20px 20px;
+@media only screen 
+and (min-width : 1224px){
+  column-count: 4;
+}
+column-count: 2;
+column-gap: 20px 20px;
  width: 100%;
 }
 .gallery-container2 {
