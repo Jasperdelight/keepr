@@ -2,6 +2,7 @@
 <div class="gallery-container bg-white">
   <!-- <section class="row"> -->
     <figure v-for="keep in keeps" :key="keep.id" class="" >
+      
       <img :src="keep.img" alt="" class="img-fluid">
         <KeepCardComponent :keep = "keep"/>
     </figure>

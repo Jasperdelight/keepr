@@ -1,7 +1,7 @@
 <template>
   <figcaption class="justify-content-around">
 <div class="">
-  <button style="" class="btn btn-outline glassbox" data-bs-toggle="modal" data-bs-target="#keepModal" @click="setActiveKeep(keep.id)">
+  <button title="View Keep Details" style="" class="btn btn-outline glassbox" data-bs-toggle="modal" data-bs-target="#keepModal" @click="setActiveKeep(keep.id)">
     {{ keep.name }}
   </button>
 </div>
@@ -15,7 +15,7 @@
       <img :src="keep.creator.picture" :alt="keep.creator.name" :title="`Keep Creator ${keep.creator.name}`" class="img-fluid avatar">
     </router-link>
   </div>
-  <button v-if="keep.creatorId == account.id" @click="removeKeep(keep.id)" class="btn btn-outline-danger">x</button>
+  <button title="Delete Keep" v-if="keep.creatorId == account.id" @click="removeKeep(keep.id)" class="btn btn-outline-danger">x</button>
   </figcaption>
 </template>
 
@@ -94,7 +94,7 @@ figcaption {
   justify-self: start;
   position: relative;
   display: flex;
-  bottom: 60px;
+  bottom: 90px;
 }
 
 .container {

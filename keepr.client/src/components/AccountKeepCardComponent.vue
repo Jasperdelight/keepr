@@ -1,13 +1,13 @@
 <template>
   <section class="row d-flex">
 <div class="col-6">
-  <button style="" class="btn btn-outline overflow-button glassbox" data-bs-toggle="modal" data-bs-target="#keepModal" @click="setActiveKeep(keep.id)">
+  <button title="View Keep Details" style="" class="btn btn-outline overflow-button glassbox" data-bs-toggle="modal" data-bs-target="#keepModal" @click="setActiveKeep(keep.id)">
     {{ keep.name }}
   </button>
 </div>
 <div class="col-6 text-end pe-0">
   
-  <button v-if="keep.creatorId == account.id" @click="removeKeep(keep.id)" class="btn btn-outline-danger">x</button>
+  <button title="Delete Keep" v-if="keep.creatorId == account.id" @click="removeKeep(keep.id)" class="btn btn-outline-danger">x</button>
 </div>
   <!-- </section> -->
   <!-- <section class="row"> -->

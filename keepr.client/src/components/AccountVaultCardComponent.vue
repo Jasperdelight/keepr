@@ -4,8 +4,8 @@
     <router-link :to="{name: 'Vault', params:{vaultId: vault.id}}">
     <button class="btn glassbox" @click="setMyActiveVault(vault.id)">{{ vault.name }}</button>
   </router-link>
-  <i v-if="vault.isPrivate" title="Vault is Private" class="mdi mdi-magnify text-white text-shadow rounded"></i>
-  <button @click="removeVault(vault.id)" class="btn btn-outline-danger">x</button>
+  <i v-if="vault.isPrivate" title="Vault is Private" class="mdi mdi-lock text-white text-shadow rounded"></i>
+  <button title="Delete Vault" @click="removeVault(vault.id)" class="btn btn-outline-danger">x</button>
 </div>
 </template>
 

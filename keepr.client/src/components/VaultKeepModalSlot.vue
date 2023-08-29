@@ -30,7 +30,7 @@
       <select v-if="account?.id" v-model="editable.vaultId" class="form-select" placeholder="Vault.." id="Vault" required>
         <option v-for="vault in myVaults" :key="vault.id" :value="vault.id">{{ vault.name }}</option>
       </select>
-      <button v-if="account?.id" class="btn btn-secondary" @click="createVaultKeep(activeKeep.id)">Save</button>
+      <button title="Save Keep to Vault" v-if="account?.id" class="btn btn-secondary" @click="createVaultKeep(activeKeep.id)">Save</button>
           </div>
 
           <div class="col-2">

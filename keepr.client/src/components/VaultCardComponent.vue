@@ -2,9 +2,9 @@
   <div class="d-flex justify-content-between">
 
     <router-link :to="{name: 'Vault', params:{vaultId: vault.id}}">
-      <button class="btn glassbox" @click="setActiveVault(vault.id)">{{ vault.name }}</button>
+      <button title="View Vault Details" class="btn glassbox" @click="setActiveVault(vault.id)">{{ vault.name }}</button>
     </router-link>
-    <i v-if="vault.isPrivate" title="Vault is Private" class="mdi mdi-magnify text-white text-shadow rounded"></i>
+    <i v-if="vault.isPrivate" title="Vault is Private" class="mdi mdi-lock text-white text-shadow rounded"></i>
   </div>
     <!-- <button v-if="vault.creatorId == account.id" @click="removeVault(vault.id)" class="btn btn-danger">x</button> -->
 </template>

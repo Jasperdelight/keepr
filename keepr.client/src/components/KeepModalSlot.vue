@@ -10,9 +10,9 @@
         <!-- Header (views/kept) -->
         <section class="row">
           <div class="col-12">
-            <p class="text-center"><i class="mdi mdi-eye"></i>{{ activeKeep.views }}
-              <span class="ps-2">
-                <i class="mdi mdi-lock"></i>{{ activeKeep.kept }}
+            <p title="Views" class="text-center"><i class="mdi mdi-eye"></i>{{ activeKeep.views }}
+              <span title="Times saved in a vault" class="ps-2">
+                <i  class="mdi mdi-lock"></i>{{ activeKeep.kept }}
               </span>
             </p>
           </div>
@@ -30,7 +30,7 @@
       <select v-if="account?.id" v-model="editable.vaultId" class="form-select" placeholder="Vault.." id="Vault" required>
         <option v-for="vault in myVaults" :key="vault.id" :value="vault.id">{{ vault.name }}</option>
       </select>
-      <button v-if="account?.id" class="btn btn-secondary" @click="createVaultKeep(activeKeep.id)">Save</button>
+      <button title="Save Keep to Vault" v-if="account?.id" class="btn btn-secondary" @click="createVaultKeep(activeKeep.id)">Save</button>
           </div>
 
           <div class="col-2">
