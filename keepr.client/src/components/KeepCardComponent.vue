@@ -89,7 +89,7 @@ figure a {
 figcaption {
   grid-row: 2;
   grid-column: 1;
-  background-color: rgba(255,255,255,.5);
+  background-color: rgba(255, 255, 255, 0);
   padding: .2em .5em;
   justify-self: start;
   position: relative;
