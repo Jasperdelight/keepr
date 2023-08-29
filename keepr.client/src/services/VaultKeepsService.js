@@ -6,7 +6,7 @@ import { api } from "./AxiosService"
 class VaultKeepsService{
 async createVaultKeep(vkData){
   const res = await api.post("api/vaultkeeps", vkData)
-  logger.log(res.data)
+  // logger.log(res.data)
   Pop.toast(`Saved to vault!`)
   
 }

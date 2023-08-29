@@ -70,7 +70,7 @@ export default {
         try{
           const vkData = editable.value
         vkData.keepId = keepId
-        logger.log(keepId)
+        // logger.log(keepId)
         vaultKeepsService.createVaultKeep(vkData)
         Modal.getOrCreateInstance('#keepModal').hide()
         } catch(error) {
