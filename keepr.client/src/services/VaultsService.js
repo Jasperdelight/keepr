@@ -15,12 +15,13 @@ async getMyVaults(){
 }
 async getProfileVaults(profileId){
   const res = await api.get(`api/profiles/${profileId}/vaults`)
+  // logger.log(res.data)
   AppState.profileVaults = res.data.map(v=> new Vault(v))
 }
-setActiveVault(vaultId){
-  let foundVault = AppState.profileVaults.find(v=> v.id == vaultId)
+async setActiveVault(vaultId){
+  const res = await api.get(`api/vaults/${vaultId}`)
 
-  AppState.activeVault = new Vault(foundVault)
+  AppState.activeVault = new Vault(res.data)
 }
 setMyActiveVault(vaultId){
   let foundVault = AppState.myVaults.find(v=>v.id ==vaultId)
@@ -38,7 +39,7 @@ async removeVault(vaultId){
     throw new Error("This is a bad id")
   }
   AppState.myVaults.splice(vaultIndex, 1)
-  logger.log('vault removed?', res.data)
+  // logger.log('vault removed?', res.data)
 }
 
 }

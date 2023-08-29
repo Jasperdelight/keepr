@@ -34,7 +34,7 @@
       <section class="row">
         <div class="col-12 fs-7 text-secondary">Private Vaults can only be seen by you</div>
         <div class="col-12 d-flex justify-content-end">
-          <input v-model="editable.isPrivate" class="mb-3 me-1" type="checkbox" placeholder="Description.." id="description">
+          <input v-model="editable.isPrivate" class="mb-3 me-1" type="checkbox" placeholder="Description.." id="description" default="false">
           <p class="fs-2">Make Vault Private?</p>
         </div>
         <div class="col-12">
@@ -58,6 +58,7 @@ import Pop from "../utils/Pop";
 import { vaultsService } from "../services/VaultsService";
 import { Modal } from "bootstrap";
 import { AppState } from "../AppState";
+import { logger } from "../utils/Logger";
 
 export default {
   setup(){
@@ -67,7 +68,11 @@ export default {
       async createVault(){
         try{
             const formData = editable.value
+            if (editable.value.isPrivate == null) {
+              editable.value.isPrivate = false
+            }
             await vaultsService.createVault(formData)
+            logger.log(editable.value)
             editable.value = {}
             Modal.getOrCreateInstance('#newVaultModal').hide()
             Pop.toast("Vault Created")

@@ -2,8 +2,9 @@
   <div class="d-flex justify-content-between">
 
     <router-link :to="{name: 'Vault', params:{vaultId: vault.id}}">
-    <button class="" @click="setMyActiveVault(vault.id)">{{ vault.name }}</button>
+    <button class="btn glassbox" @click="setMyActiveVault(vault.id)">{{ vault.name }}</button>
   </router-link>
+  <i v-if="vault.isPrivate" title="Vault is Private" class="mdi mdi-magnify text-white text-shadow rounded"></i>
   <button @click="removeVault(vault.id)" class="btn btn-outline-danger">x</button>
 </div>
 </template>
@@ -25,9 +26,9 @@ export default {
     
     return {
       account: computed(()=> AppState.account),
-      setMyActiveVault(vaultId){
+      async setMyActiveVault(vaultId){
         try{
-            vaultsService.setMyActiveVault(vaultId)
+            await vaultsService.setMyActiveVault(vaultId)
         } catch(error) {
             Pop.error(error.message);
         }
@@ -48,5 +49,7 @@ export default {
 
 
 <style lang="scss" scoped>
-
+.glassbox{
+  background-color: rgba(255, 255, 255, 0.658);
+}
 </style>

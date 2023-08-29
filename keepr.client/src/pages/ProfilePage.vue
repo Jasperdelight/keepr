@@ -1,5 +1,5 @@
 <template>
-<div class="container-fluid">
+<div v-if="profile" class="container-fluid">
   <section class="row">
     <div class="col-8 m-auto text-center mt-4">
       <img class="img-fluid cover-img rounded" :src="profile.coverImg" :alt="profile.name">
@@ -27,6 +27,15 @@
     </div>
   </section>
 </div>
+<div v-else class="container-fluid">
+    <div class="row">
+      <div class="col-12 p-4">
+        <p class="fs-1">
+          Loading....
+        </p>
+      </div>
+    </div>
+  </div>
 <ModalComponent id="keepModal">
   <!-- <template #modalHeader>
       header
@@ -40,7 +49,7 @@
 
 <script>
 import { Modal } from "bootstrap";
-import { computed, onMounted } from "vue";
+import { computed, onMounted, onUnmounted, watchEffect } from "vue";
 import { useRoute } from "vue-router";
 import Pop from "../utils/Pop";
 import { logger } from "../utils/Logger";
@@ -54,7 +63,7 @@ export default {
     async function getProfileVaults(){
       try{
           let profileId = route.params.profileId
-          vaultsService.getProfileVaults(profileId)
+          await vaultsService.getProfileVaults(profileId)
       } catch(error) {
           Pop.error(error.message);
       }
@@ -62,7 +71,7 @@ export default {
     async function getProfileKeeps(){
       try{
           let profileId = route.params.profileId
-          keepsService.getProfileKeeps(profileId)
+          await keepsService.getProfileKeeps(profileId)
       } catch(error) {
           Pop.error(error.message);
       }
@@ -70,15 +79,20 @@ export default {
     async function getProfile(){
       try{
           let profileId = route.params.profileId
-          profilesService.getProfile(profileId)
+          await profilesService.getProfile(profileId)
       } catch(error) {
           Pop.error(error.message);
       }
     }
-    onMounted(()=> {
-      getProfileVaults()
-      getProfileKeeps()
-      getProfile()
+    watchEffect(()=> {
+      getProfileVaults(route.params.profileId)
+      getProfileKeeps(route.params.profileId)
+      getProfile(route.params.profileId)
+    })
+    onUnmounted(()=>{
+      AppState.profile = [],
+      AppState.profileKeeps = {},
+      AppState.profileVaults= {}
     })
     return {
       profileKeeps: computed(()=> AppState.profileKeeps),

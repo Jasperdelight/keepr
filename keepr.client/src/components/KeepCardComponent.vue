@@ -1,7 +1,7 @@
 <template>
   <figcaption class="justify-content-around">
 <div class="">
-  <button style="" class="btn btn-outline bg-grey " data-bs-toggle="modal" data-bs-target="#keepModal" @click="setActiveKeep(keep.id)">
+  <button style="" class="btn btn-outline glassbox" data-bs-toggle="modal" data-bs-target="#keepModal" @click="setActiveKeep(keep.id)">
     {{ keep.name }}
   </button>
 </div>
@@ -115,6 +115,9 @@ figcaption .avatar {
   border-radius: 50%;
   object-fit: cover;
   position: relative;
+}
+.glassbox{
+  background-color: rgba(255, 255, 255, 0.658);
 }
 
 </style>

@@ -29,13 +29,13 @@
 
 
 <script>
-import { computed, onMounted, watchEffect } from "vue";
+import { computed, onMounted, onUnmounted, watchEffect } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { logger } from "../utils/Logger";
 import { keepsService } from "../services/KeepsService";
 import { AppState } from "../AppState";
 import Pop from "../utils/Pop";
-
+import { vaultsService } from "../services/VaultsService";
 export default {
   setup(){
     const route = useRoute()
@@ -52,8 +52,23 @@ export default {
         }
       }
     }
-    onMounted(()=> {
-      getVaultKeepsByVaultId()
+    async function setActiveVault(){
+        try{
+            
+            await vaultsService.setActiveVault(route.params.vaultId)
+        } catch(error) {
+            Pop.error(error.message);
+        }
+      }
+    onMounted(()=>{
+      setActiveVault()
+    })
+    watchEffect(()=> {
+      getVaultKeepsByVaultId(route.params.vaultId)
+    })
+    onUnmounted(()=>{
+      AppState.activeVault = {},
+      AppState.activeVaultKeeps = []
     })
     return {
       activeVault: computed(()=> AppState.activeVault),

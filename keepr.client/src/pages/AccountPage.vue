@@ -36,9 +36,9 @@ import { computed } from 'vue';
 import { AppState } from '../AppState';
 export default {
   setup() {
-    async function getMyKeeps(){
+    // async function getMyKeeps(){
 
-    }
+    // }
     return {
       account: computed(() => AppState.account),
       myVaults: computed(()=> AppState.myVaults),

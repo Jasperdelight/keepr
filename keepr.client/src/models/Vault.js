@@ -4,7 +4,7 @@ export class Vault{
     this.name = data.name
     this.description = data.description
     this.img = data.img
-    this.isPrivate = data.isPrivate
+    this.isPrivate = data.isPrivate || false
     this.creator = data.creator
     this.keeps = data.keeps
     this.id = data.id

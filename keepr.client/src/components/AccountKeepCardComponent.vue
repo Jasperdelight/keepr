@@ -1,7 +1,7 @@
 <template>
   <section class="row d-flex">
 <div class="col-6">
-  <button style="height: 4rem;" class="btn btn-outline bg-grey " data-bs-toggle="modal" data-bs-target="#keepModal" @click="setActiveKeep(keep.id)">
+  <button style="" class="btn btn-outline overflow-button glassbox" data-bs-toggle="modal" data-bs-target="#keepModal" @click="setActiveKeep(keep.id)">
     {{ keep.name }}
   </button>
 </div>
@@ -58,6 +58,11 @@ export default {
 
 
 <style lang="scss" scoped>
+.overflow-button {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 .avatar{
   height: 40px;
   width: 40px;
@@ -65,6 +70,9 @@ export default {
   object-fit: cover;
   position: relative;
   top: 350%;
+}
+.glassbox{
+  background-color: rgba(255, 255, 255, 0.658);
 }
 
 </style>
