@@ -1,22 +1,22 @@
 <template>
-  <section class="row d-flex">
-<div class="col-6">
-  <button style="height: 5rem;" class="btn btn-outline bg-grey " data-bs-toggle="modal" data-bs-target="#keepModal" @click="setActiveKeep(keep.id)">
+  <figcaption class="justify-content-around">
+<div class="">
+  <button style="" class="btn btn-outline bg-grey " data-bs-toggle="modal" data-bs-target="#keepModal" @click="setActiveKeep(keep.id)">
     {{ keep.name }}
   </button>
 </div>
-<div class="col-6 text-end">
+<div class=" text-end">
   
-  <button v-if="keep.creatorId == account.id" @click="removeKeep(keep.id)" class="btn btn-outline-danger">x</button>
 </div>
-  <!-- </section> -->
-  <!-- <section class="row"> -->
-    <div class="col-12 text-end">
-      <router-link :to= "{name: 'Profile', params:{profileId: keep.creator.id}}"  >
+<!-- </section> -->
+<!-- <section class="row"> -->
+  <div class=" text-end">
+    <router-link :to= "{name: 'Profile', params:{profileId: keep.creator.id}}"  >
       <img :src="keep.creator.picture" :alt="keep.creator.name" :title="`Keep Creator ${keep.creator.name}`" class="img-fluid avatar">
     </router-link>
-    </div>
-  </section>
+  </div>
+  <button v-if="keep.creatorId == account.id" @click="removeKeep(keep.id)" class="btn btn-outline-danger">x</button>
+  </figcaption>
 </template>
 
 
@@ -58,6 +58,57 @@ export default {
 
 
 <style lang="scss" scoped>
+
+body {
+  background-color: #000;
+  font: 1.1em Arial, Helvetica, sans-serif;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+figure {
+  margin: 0;
+  display: grid;
+  // grid-template-rows: 1fr auto;
+  background-color: white;
+}
+
+figure > img {
+  grid-row: 1 / -1;
+  grid-column: 1;
+}
+
+figure a {
+  color: black;
+  text-decoration: none;
+}
+
+figcaption {
+  grid-row: 2;
+  grid-column: 1;
+  background-color: rgba(255,255,255,.5);
+  padding: .2em .5em;
+  justify-self: start;
+  position: relative;
+  display: flex;
+  bottom: 60px;
+}
+
+.container {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 1fr 2fr;
+  // height: 200vh;
+  align-tracks: inherit ;
+  align-content: start;
+}
+figcaption .avatar {
+  display: flex;
+  align-items: center;
+}
 .avatar{
   height: 40px;
   width: 40px;

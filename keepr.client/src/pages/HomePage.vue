@@ -1,11 +1,11 @@
 <template>
-<div class="container-fluid m-auto">
-  <section class="row">
-    <div v-for="keep in keeps" :key="keep.id" class="col-4" style=" background-repeat: no-repeat; background-position:0%; height: 20rem; background-size: cover;" :style="`background-image: url(${keep.img})`">
-      <!-- <img :src="keep.img" alt="" class="img-fluid"> -->
+<div class="gallery-container bg-white">
+  <!-- <section class="row"> -->
+    <figure v-for="keep in keeps" :key="keep.id" class="" >
+      <img :src="keep.img" alt="" class="img-fluid">
         <KeepCardComponent :keep = "keep"/>
-    </div>
-  </section>
+    </figure>
+  <!-- </section> -->
 </div>
 
 </template>
@@ -19,7 +19,6 @@ import ModalComponent from "../components/ModalComponent.vue";
 import KeepForm from "../components/KeepForm.vue";
 import { vaultsService } from "../services/VaultsService";
 import { useRoute } from "vue-router";
-import Masonry from "masonry-layout"
 export default {
     setup() {
       const grid = ref(null);
@@ -33,13 +32,7 @@ export default {
         }
         onMounted(() => {
           getKeeps();
-              // const masonry = new Masonry(grid.value, {
-              //   itemSelector: ".grid-item",
-              //   columnWidth:200,
-              //   gutter: 50,
-              //   percentPosition: true
 
-              // });
         });
         watchEffect(()=>{})
         return {
@@ -54,9 +47,39 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.grid-item{
-  width: 25%;
-  // margin-left: 15%;
+.container {
+   max-width: 1224px;
+   margin: 0 auto;
+}
 
+img {
+   width: 500px;
+   object-fit: contain;
+   border-radius: 15px;
+}
+
+.gallery-container {
+  @media only screen 
+and (max-width : 390px){
+  column-count: 2;
+}
+@media only screen 
+and (min-width : 1224px){
+  column-count: 4;
+}
+ column-gap: 20px 20px;
+ width: 100%;
+}
+.gallery-container2 {
+ column-count: 2;
+ column-gap: 20px 20px;
+ width: 1200px;
+}
+
+figure {
+ margin: 0;
+ display: inline-block;
+ margin-bottom: 0px;
+ width: 100%;
 }
 </style>

@@ -12,7 +12,7 @@
     <div class="col-10 m-auto">
       <h2>Vaults</h2>
       <section class="row">
-        <div v-for="vault in profileVaults" :key="vault.id" class="col-3 elevation-3 " style="height: 150px; background-repeat: no-repeat; background-position: center; background-size: cover;" :style="`background-image: url(${vault.img})`">
+        <div v-for="vault in profileVaults" :key="vault.id" class="col-md-3 col-6 elevation-3 " style="height: 150px; background-repeat: no-repeat; background-position: center; background-size: cover;" :style="`background-image: url(${vault.img})`">
           <VaultCardComponent :vault = "vault"/>
         </div>
       </section>
@@ -20,8 +20,8 @@
     <div class="col-10 m-auto">
       <h3>Keeps</h3>
       <section class="row">
-        <div v-for="keep in profileKeeps" :key="keep.id" class="col-3 elevation-3" style="height: 250px; background-repeat: no-repeat; background-position: center; background-size: cover;" :style="`background-image: url(${keep.img})`">
-          <KeepCardComponent :keep = "keep"/>
+        <div v-for="keep in profileKeeps" :key="keep.id" class="col-md-3 col-6 elevation-3" style="height: 250px; background-repeat: no-repeat; background-position: center; background-size: cover;" :style="`background-image: url(${keep.img})`">
+          <AccountKeepCardComponent :keep = "keep"/>
           </div>
       </section>
     </div>
