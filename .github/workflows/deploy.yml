@@ -25,7 +25,7 @@ jobs:
         run: |
           docker buildx create --use
           docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-          docker buildx build --platform linux/amd64 -t your-dockerhub-username/your-image-name:$DOCKER_IMAGE_TAG --push .
+          docker buildx build --platform linux/amd64 -t jasperdelight/keepr:$DOCKER_IMAGE_TAG --push .
 
       - name: SSH Deploy 📔
         env:
