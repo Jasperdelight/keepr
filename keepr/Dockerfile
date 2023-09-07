@@ -26,4 +26,4 @@ COPY --from=build-env /app/out .
 EXPOSE 80
 
 # Set the entry point for the container
-ENTRYPOINT ["dotnet", "YourAppName.dll"]
+ENTRYPOINT ["dotnet", "keepr.dll"]
