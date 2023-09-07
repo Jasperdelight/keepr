@@ -1,6 +1,6 @@
 version: '3'
 services:
   web:
-    image: your-dockerhub-username/your-image-name:latest
+    image: jasperdelight/keepr:latest
     ports:
       - "80:80"
