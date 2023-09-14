@@ -1,9 +1,3 @@
-# build client
-FROM node:18
-WORKDIR /app
-COPY . ./
-RUN cd keepr.client && npm ci && npm run build
-
 # Use the .NET Core SDK image as the base image
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build-env
 
