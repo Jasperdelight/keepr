@@ -100,7 +100,7 @@ public class Startup
     }
 
 
-    app.UseHttpsRedirection();
+    // app.UseHttpsRedirection();
 
     app.UseDefaultFiles();
     app.UseStaticFiles();
