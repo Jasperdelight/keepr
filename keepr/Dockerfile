@@ -23,7 +23,7 @@ WORKDIR /app
 COPY --from=build-env /app/out .
 
 # Expose the port your application listens on
-EXPOSE 80
+EXPOSE 7080
 
 # Set the entry point for the container
 ENTRYPOINT ["dotnet", "keepr.dll"]

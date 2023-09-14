@@ -3,4 +3,4 @@ services:
   web:
     image: jasperdelight/keepr:latest
     ports:
-      - "80:80"
+      - "7080:7080"
