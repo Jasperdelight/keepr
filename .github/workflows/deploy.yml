@@ -53,4 +53,4 @@ jobs:
 
           # Replace "path/to/your/docker-compose.yml" with your actual Docker Compose file path
           scp -i ~/.ssh/id_rsa.pem -o StrictHostKeyChecking=no -r keepr/docker-compose.yml $EC2_USERNAME@$EC2_IP_ADDRESS:~/keepr-compose
-          ssh -i ~/.ssh/id_rsa.pem -o StrictHostKeyChecking=no $EC2_USERNAME@$EC2_IP_ADDRESS "sudo docker-compose -f ~/keepr-compose up -d"
+          ssh -i ~/.ssh/id_rsa.pem -o StrictHostKeyChecking=no $EC2_USERNAME@$EC2_IP_ADDRESS "sudo docker-compose up --build ~/keepr-compose up -d"
